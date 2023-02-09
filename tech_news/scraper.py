@@ -25,7 +25,12 @@ def scrape_updates(html_content):
 
 # Requisito 3
 def scrape_next_page_link(html_content):
-    """Seu código deve vir aqui"""
+    css_selector = "a.next::attr(href)"  # endereço do botão next
+    html_page = Selector(text=html_content)  # carrega a pag html
+    url_next_page = html_page.css(
+        css_selector
+    ).get()  # retorna o primeiro elemento encontrado
+    return url_next_page
 
 
 # Requisito 4
