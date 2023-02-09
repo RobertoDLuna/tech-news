@@ -1,3 +1,4 @@
+from parsel import Selector
 import requests
 import time
 
@@ -15,13 +16,11 @@ def fetch(url):
         return None
 
 
-# testando manualmente
-print(fetch("https://www.tecmundo.com.br/mais-lidas"))
-
-
 # Requisito 2
 def scrape_updates(html_content):
-    """Seu código deve vir aqui"""
+    data_selector = Selector(html_content)
+    link_news = data_selector.css("a.cs-overlay-link::attr(href)").getall()
+    return link_news
 
 
 # Requisito 3
